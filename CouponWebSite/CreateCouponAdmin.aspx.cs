@@ -15,25 +15,8 @@ namespace CouponWebSite
             if (Session["UserType"].Equals("3"))
             {
                 SqlDataSource1.SelectCommand +="Where BusinessManager="+Session["CurrentUserName"];
+               // business_dropDownList.Visible = false;
             }
-            //put in drop down list the businesses
-            /*couponsEntities ce = new couponsEntities();
-            List<Business> lst = ce.Businesses.ToList();
-            if (Session["UserType"].Equals("3"))
-            {
-
-                foreach (Business b in lst)
-                {
-                    if (b.BusinessManager.Equals(Session["CurrentUserName"]))
-                    {
-                        //search for the business id
-                        busID = b.ID;
-                    }
-
-                }
-
-
-            }*/
         }
 
         protected void createCoupon_Click(object sender, EventArgs e)
@@ -57,31 +40,17 @@ namespace CouponWebSite
             string desc = description.Text;
             newCoupon.Description = desc;
             //category
+            int categoryid = Int32.Parse(category_dropDownList.SelectedValue);
+            newCoupon.CategoryID = categoryid;
             string name = name_txt.Text;
             newCoupon.Name = name;
             int busID = Int32.Parse(business_dropDownList.SelectedValue);
             DateTime lastUse = DateTime.Parse(last_Use.Text);
+            newCoupon.LastUseDate = lastUse;
             couponsEntities ce = new couponsEntities();
-           /* List<Business> lst = ce.Businesses.ToList();
-            if (Session["UserType"].Equals("3"))
-            {
-
-                foreach (Business b in lst)
-                {
-                    if (b.BusinessManager.Equals(Session["CurrentUserName"]))
-                    {
-                        //search for the business id
-                        busID = b.ID;
-                    }
-
-                }
-
-                
-            }*/
             newCoupon.BusinessID = busID;
             ce.Coupons.Add(newCoupon);
             ce.SaveChanges();
-
             
         }
     }
