@@ -42,7 +42,7 @@
         <asp:TextBox runat="server" Visible="true" ID="userLatitude"></asp:TextBox>
         <asp:TextBox runat="server" Visible="true" ID="userLongitude"></asp:TextBox>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=fituxeoqua.database.windows.net;Initial Catalog=coupons;Integrated Security=False;User ID=haimi;Password=shit123!;MultipleActiveResultSets=True;Connect Timeout=60;TrustServerCertificate=False;Application Name=EntityFramework" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [Name] FROM [Category]"></asp:SqlDataSource>
-        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Name" DataValueField="Name"></asp:DropDownList>
+        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Name" DataValueField="ID"></asp:DropDownList>
         <asp:Button ID="btn_CategorySelected" runat="server" Text="Update Category" OnClick="btn_CategorySelected_Click" />
 
         <h1> Select Reccomndation Systen</h1>
