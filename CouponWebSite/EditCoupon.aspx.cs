@@ -34,7 +34,7 @@ namespace CouponWebSite
                 TableCell cell = selectedRow.Cells[0]; //CouponID
                 int id = Convert.ToInt32(cell.Text);
                 editCoupon(id);
-                Session["EditedCouponId"] = id;
+               // Session["EditedCouponId"] = id;
             }
             /*
         else if (e.CommandName=="Delete")
@@ -60,18 +60,15 @@ namespace CouponWebSite
             txt_OriginalPrice.Text = Convert.ToString(c.OriginalPrice);
             txt_DiscountPrice.Text = Convert.ToString(c.DiscountPrice);
             txt_Description.Text = c.Description;
+            Label6.Text += couponID;
             editCouponDiv.Visible = true;
-
-
-
-
-
+            
         }
 
         protected void submit_edit_Click(object sender, EventArgs e)
         {
             couponsEntities ce = new couponsEntities();
-            Coupon c = ce.Coupons.Find(Session["EditedCouponId"]);
+            Coupon c = ce.Coupons.Find(Int32.Parse(Label6.Text.Substring(3)));
             c.Name = txt_Name.Text;
             c.Type = Convert.ToInt32(txt_Type.Text);
             c.OriginalPrice = Convert.ToInt32(txt_OriginalPrice.Text);

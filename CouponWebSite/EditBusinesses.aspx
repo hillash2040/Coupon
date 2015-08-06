@@ -21,6 +21,9 @@
         <fieldset>
             <ol>
                 <li>
+                    <asp:Label ID="Label6" runat="server" Text="ID:"></asp:Label>
+                </li>
+                <li>
                     <asp:Label ID="Label2" runat="server" Text="Name:"></asp:Label>
                 <asp:TextBox ID="txt_Name" runat="server"></asp:TextBox>
                 </li>

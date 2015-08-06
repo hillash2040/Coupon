@@ -21,6 +21,7 @@
         <asp:Label ID="Label1" runat="server" Text="Edit Selected Coupon"></asp:Label>
         <fieldset>
             <ol>
+                <li><asp:Label ID="Label8" runat="server" Text="ID:"></asp:Label></li>                  
                 <li>
                     <asp:Label ID="Label2" runat="server" Text="Name:"></asp:Label>
                 <asp:TextBox ID="txt_Name" runat="server"></asp:TextBox>
