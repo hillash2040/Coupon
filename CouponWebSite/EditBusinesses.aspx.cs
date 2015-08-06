@@ -22,7 +22,7 @@ namespace CouponWebSite
         protected void submit_edit_Click(object sender, EventArgs e)
         {
             couponsEntities ce = new couponsEntities();
-            Business b = ce.Businesses.Find(Int32.Parse(Label6.Text.Substring(3)));
+            Business b = ce.Businesses.Find(Int32.Parse(Label6.Text.Substring(4)));
             b.Name = txt_Name.Text;
             b.Description = txt_Description.Text;
             b.Address = txt_Address.Text;
@@ -54,6 +54,7 @@ namespace CouponWebSite
             txt_Address.Text = b.Address;
             txt_City.Text = b.City;
             txt_Description.Text = b.Description;
+            Label6.Text = "ID: " + businessID;
             editBusinessDiv.Visible = true;
 
         }
