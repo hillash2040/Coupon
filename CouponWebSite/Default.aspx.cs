@@ -35,8 +35,6 @@ namespace CouponWebSite
                         Response.Redirect("~/BusinessManagerHomePage.aspx");
                 }      
 
-
-
             }
             else //No Such Cookie. Guests area
             {
@@ -55,16 +53,10 @@ namespace CouponWebSite
                         lst_newCoupons.Add(c);
                     }
                 }
-
-                NewBooks.DataSource = lst_newCoupons;
-
-                NewBooks.AutoGenerateColumns = false;
-                NewBooks.DataBind();
-
-
+                NewCoupons.DataSource = lst_newCoupons;
+                NewCoupons.AutoGenerateColumns = false;
+                NewCoupons.DataBind();
             }
-
-
         }
     }
 }

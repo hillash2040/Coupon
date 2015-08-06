@@ -15,9 +15,6 @@ namespace CouponWebSite
         protected void Page_Load(object sender, EventArgs e)
         {
             
-
-
-
             if (!Page.IsPostBack)
             {
  
@@ -26,8 +23,6 @@ namespace CouponWebSite
 
         protected void btnClick_RegisterUser(object sender, EventArgs e)
         {           
-
-            
             string userName = UserName.Text;
             string email = Email.Text;
             string password = Password.Text;
@@ -37,8 +32,6 @@ namespace CouponWebSite
             c.UserName = userName;
             c.Email = email;
             c.Password = password;
-
-
 
             couponsEntities ce = new couponsEntities();
             List<User> lst = ce.Users.ToList();
@@ -55,7 +48,6 @@ namespace CouponWebSite
             }
             if (!found)
             {
-
                 if (isAdmin)
                     c.UserType = 1;//admin
                 else
@@ -64,10 +56,7 @@ namespace CouponWebSite
                 ce.SaveChanges();
                 //Redirect to login Page
                 Response.Redirect("Login1.aspx");
-
             }
-
-
         }
     }
 }
