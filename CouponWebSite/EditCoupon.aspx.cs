@@ -65,7 +65,7 @@ namespace CouponWebSite
             txt_OriginalPrice.Text = Convert.ToString(c.OriginalPrice);
             txt_DiscountPrice.Text = Convert.ToString(c.DiscountPrice);
             txt_Description.Text = c.Description;
-            Label6.Text += couponID;
+            Label8.Text += couponID;
             editCouponDiv.Visible = true;
             
         }
@@ -73,7 +73,7 @@ namespace CouponWebSite
         protected void submit_edit_Click(object sender, EventArgs e)
         {
             couponsEntities ce = new couponsEntities();
-            Coupon c = ce.Coupons.Find(Int32.Parse(Label6.Text.Substring(3)));
+            Coupon c = ce.Coupons.Find(Int32.Parse(Label8.Text.Substring(3)));
             c.Name = txt_Name.Text;
             c.Type = Convert.ToInt32(txt_Type.Text);
             c.OriginalPrice = Convert.ToInt32(txt_OriginalPrice.Text);
