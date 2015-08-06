@@ -13,7 +13,14 @@ namespace CouponWebSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //Session["CurrentUserType"]==3
+            if ((int)Session["CurrentUserType"]==3) //BusinessManager
+            {
+                string bm_Id = (string)Session["CurrentUserName"];
+                string command = "SELECT Coupon.ID, Coupon.Name, Coupon.Description, Coupon.LastUseDate, Coupon.DiscountPrice FROM Business INNER JOIN Coupon ON Business.ID = Coupon.BusinessID Where Business.BusinessManager="+bm_Id;
+                SqlDataSource1.SelectCommand = command;
+            }
+ 
         }
 
 
@@ -75,5 +82,7 @@ namespace CouponWebSite
             ce.SaveChanges();
 
         }
+
+
     }
 }
