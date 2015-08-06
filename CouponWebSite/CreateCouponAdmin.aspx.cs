@@ -24,17 +24,20 @@ namespace CouponWebSite
         protected void createCoupon_Click(object sender, EventArgs e)
         {
             //Create Coupon according to its type
-            Coupon newCoupon;
+            Coupon newCoupon = new Coupon();
             CouponFactory.CouponFactory cf = new CouponFactory.CouponFactory();
             string type = couponType_dropDownList.SelectedValue;
+            /*
             if (type.Equals("Social Network"))
                 newCoupon = cf.makeNewCoupon(type);
             else
                 newCoupon = cf.makeNewCoupon("Regular");
+             */
+             
 
             //Retreive other information and save it in the database
 
-            //From Hilla
+            
             int disPrice = Int32.Parse(dis_price.Text);
             newCoupon.DiscountPrice = disPrice;
             int orgPrice = Int32.Parse(org_price.Text);
@@ -50,7 +53,7 @@ namespace CouponWebSite
             DateTime lastUse = DateTime.Parse(last_Use.Text);
             newCoupon.LastUseDate = lastUse;
             couponsEntities ce = new couponsEntities();
-            newCoupon.BusinessID = busID;
+            newCoupon.BusinessID = busID;            
             ce.Coupons.Add(newCoupon);
             ce.SaveChanges();
             

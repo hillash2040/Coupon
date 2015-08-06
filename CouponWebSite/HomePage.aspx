@@ -7,15 +7,14 @@
 
         //gets the location of the user
 
-        var x = document.getElementById("demo");
+        
 
         function getLocation()
         {
             if (navigator.geolocation) {
                 navigator.geolocation.watchPosition(showPosition);
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
+            }     
+            
 
             
             
@@ -23,7 +22,8 @@
 
         function showPosition(position)
         {
-            x.innerHTML = "Latitude: " + position.coords.latitude +"<br>Longitude: " + position.coords.longitude;
+            document.getElementById("userLatitude").innerHTML = position.coords.latitude;
+            documnet.getElementById("userLongitude").innerHTML = position.coords.longitude;
             
 
         }
@@ -41,7 +41,7 @@
     <div> 
         <asp:TextBox runat="server" Visible="true" ID="userLatitude"></asp:TextBox>
         <asp:TextBox runat="server" Visible="true" ID="userLongitude"></asp:TextBox>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=fituxeoqua.database.windows.net;Initial Catalog=coupons;Integrated Security=False;User ID=haimi;Password=shit123!;MultipleActiveResultSets=True;Connect Timeout=60;TrustServerCertificate=False;Application Name=EntityFramework" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [Name] FROM [Category]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=fituxeoqua.database.windows.net;Initial Catalog=coupons;Integrated Security=False;User ID=haimi;Password=shit123!;MultipleActiveResultSets=True;Connect Timeout=60;TrustServerCertificate=False;Application Name=EntityFramework" ProviderName="System.Data.SqlClient" SelectCommand="SELECT * FROM [Category]"></asp:SqlDataSource>
         <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Name" DataValueField="ID"></asp:DropDownList>
         <asp:Button ID="btn_CategorySelected" runat="server" Text="Update Category" OnClick="btn_CategorySelected_Click" />
 
@@ -52,7 +52,7 @@
             <asp:ListItem> Combined</asp:ListItem>
         </asp:CheckBoxList>
 
-        <asp:Button ID="btn_SetRecommandation" runat="server" Text="Update Reccomandation Method"  OnClientClick="getLocation()" />
+        <asp:Button ID="btn_SetRecommandation" runat="server" Text="Update Reccomandation Method" OnClick="btn_SetRecommandation_Click"  OnClientClick="getLocation()" />
         
         
         <asp:Button ID="btn_ShowRecommandation" runat="server" Text="Show Reccomandations" OnClick="btn_ShowRecommandation_Click" />   

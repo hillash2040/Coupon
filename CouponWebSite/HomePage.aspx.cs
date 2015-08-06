@@ -23,12 +23,13 @@ namespace CouponWebSite
         //Sets User Favorite category
         protected void btn_CategorySelected_Click(object sender, EventArgs e)
         {
-            string category = DropDownList1.SelectedValue;
+            string categoryID = DropDownList1.SelectedValue;
+            string categoryName = DropDownList1.SelectedItem.Text;
             //Need to update user cateogry in database
 
 
 
-            Session["FavoriteCategory"] = category;
+            Session["FavoriteCategory"] = categoryName;
 
             
             
@@ -118,6 +119,11 @@ namespace CouponWebSite
         protected void createSocialCoupon_Click(object sender, EventArgs e)
         {
             Response.Redirect("CreateCouponUser.aspx");
+        }
+
+        protected void btn_SetRecommandation_Click(object sender, EventArgs e)
+        {
+            setReccomndation();
         }
     }
 }
