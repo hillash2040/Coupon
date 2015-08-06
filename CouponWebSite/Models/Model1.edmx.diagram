@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4feddc7aa6324f98b108892edf4cf79c" Name="Diagram1">
+        <EntityTypeShape EntityType="couponsModel.Business" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="couponsModel.Category" Width="1.5" PointX="0.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="couponsModel.Coupon" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="couponsModel.RecommendationType" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="couponsModel.User" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="couponsModel.UserCoupon" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="couponsModel.UserType" Width="1.5" PointX="3.75" PointY="9.125" IsExpanded="true" />
+        <AssociationConnector Association="couponsModel.FK_Coupon_0" ManuallyRouted="false" />
+        <AssociationConnector Association="couponsModel.FK_Coupon_1" ManuallyRouted="false" />
+        <AssociationConnector Association="couponsModel.FK_User_0" ManuallyRouted="false" />
+        <AssociationConnector Association="couponsModel.FK_UserCoupon_0" ManuallyRouted="false" />
+        <AssociationConnector Association="couponsModel.FK_User_2" ManuallyRouted="false" />
+        <AssociationConnector Association="couponsModel.FK_User_1" ManuallyRouted="false" />
+        <AssociationConnector Association="couponsModel.FK_UserCoupon_1" ManuallyRouted="false" />
+        <AssociationConnector Association="couponsModel.FK_Business_0" />
+        <AssociationConnector Association="couponsModel.FK_Business_1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

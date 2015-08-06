@@ -1,0 +1,591 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="couponsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Business">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Long" Type="float" />
+          <Property Name="Lat" Type="float" />
+          <Property Name="BusinessManager" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CategoryID" Type="int" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Coupon">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="OriginalPrice" Type="float" Nullable="false" />
+          <Property Name="DiscountPrice" Type="float" Nullable="false" />
+          <Property Name="AVGRate" Type="float" />
+          <Property Name="LastUseDate" Type="date" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="BusinessID" Type="int" />
+          <Property Name="Type" Type="int" />
+        </EntityType>
+        <EntityType Name="RecommendationType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Phonenumer" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="FavoriteCategoryID" Type="int" />
+          <Property Name="CurrentLocation" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserType" Type="int" Nullable="false" />
+          <Property Name="RecommendationType" Type="int" />
+        </EntityType>
+        <EntityType Name="UserCoupon">
+          <Key>
+            <PropertyRef Name="SerialKey" />
+          </Key>
+          <Property Name="CouponID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rate" Type="int" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="SerialKey" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Business_0">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Business" Type="Self.Business" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserName" />
+            </Principal>
+            <Dependent Role="Business">
+              <PropertyRef Name="BusinessManager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Business_1">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Business" Type="Self.Business" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Business">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coupon_0">
+          <End Role="Business" Type="Self.Business" Multiplicity="0..1" />
+          <End Role="Coupon" Type="Self.Coupon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Business">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Coupon">
+              <PropertyRef Name="BusinessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coupon_1">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Coupon" Type="Self.Coupon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Coupon">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_0">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="FavoriteCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_1">
+          <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_2">
+          <End Role="RecommendationType" Type="Self.RecommendationType" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecommendationType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RecommendationType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCoupon_0">
+          <End Role="Coupon" Type="Self.Coupon" Multiplicity="1" />
+          <End Role="UserCoupon" Type="Self.UserCoupon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coupon">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserCoupon">
+              <PropertyRef Name="CouponID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCoupon_1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserCoupon" Type="Self.UserCoupon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserName" />
+            </Principal>
+            <Dependent Role="UserCoupon">
+              <PropertyRef Name="UserName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="couponsModelStoreContainer">
+          <EntitySet Name="Business" EntityType="Self.Business" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RecommendationType" EntityType="Self.RecommendationType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserCoupon" EntityType="Self.UserCoupon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Business_0" Association="Self.FK_Business_0">
+            <End Role="User" EntitySet="User" />
+            <End Role="Business" EntitySet="Business" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Business_1" Association="Self.FK_Business_1">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Business" EntitySet="Business" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coupon_0" Association="Self.FK_Coupon_0">
+            <End Role="Business" EntitySet="Business" />
+            <End Role="Coupon" EntitySet="Coupon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coupon_1" Association="Self.FK_Coupon_1">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Coupon" EntitySet="Coupon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_0" Association="Self.FK_User_0">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_1" Association="Self.FK_User_1">
+            <End Role="UserType" EntitySet="UserType" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_2" Association="Self.FK_User_2">
+            <End Role="RecommendationType" EntitySet="RecommendationType" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCoupon_0" Association="Self.FK_UserCoupon_0">
+            <End Role="Coupon" EntitySet="Coupon" />
+            <End Role="UserCoupon" EntitySet="UserCoupon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCoupon_1" Association="Self.FK_UserCoupon_1">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserCoupon" EntitySet="UserCoupon" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="couponsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Business">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Coupons" Relationship="Self.FK_Coupon_0" FromRole="Business" ToRole="Coupon" />
+          <Property Name="Long" Type="Double" />
+          <Property Name="Lat" Type="Double" />
+          <Property Name="BusinessManager" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="couponsModel.FK_Business_0" FromRole="Business" ToRole="User" />
+          <NavigationProperty Name="Category" Relationship="couponsModel.FK_Business_1" FromRole="Business" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Coupons" Relationship="Self.FK_Coupon_1" FromRole="Category" ToRole="Coupon" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_0" FromRole="Category" ToRole="User" />
+          <NavigationProperty Name="Businesses" Relationship="couponsModel.FK_Business_1" FromRole="Category" ToRole="Business" />
+        </EntityType>
+        <EntityType Name="Coupon">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OriginalPrice" Type="Double" Nullable="false" />
+          <Property Name="DiscountPrice" Type="Double" Nullable="false" />
+          <Property Name="AVGRate" Type="Double" />
+          <Property Name="LastUseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="BusinessID" Type="Int32" />
+          <NavigationProperty Name="Business" Relationship="Self.FK_Coupon_0" FromRole="Coupon" ToRole="Business" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Coupon_1" FromRole="Coupon" ToRole="Category" />
+          <NavigationProperty Name="UserCoupons" Relationship="Self.FK_UserCoupon_0" FromRole="Coupon" ToRole="UserCoupon" />
+          <Property Name="Type" Type="Int32" />
+        </EntityType>
+        <EntityType Name="RecommendationType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_2" FromRole="RecommendationType" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phonenumer" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FavoriteCategoryID" Type="Int32" />
+          <Property Name="CurrentLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="Int32" Nullable="false" />
+          <Property Name="RecommendationType" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_User_0" FromRole="User" ToRole="Category" />
+          <NavigationProperty Name="RecommendationType1" Relationship="Self.FK_User_2" FromRole="User" ToRole="RecommendationType" />
+          <NavigationProperty Name="UserType1" Relationship="Self.FK_User_1" FromRole="User" ToRole="UserType" />
+          <NavigationProperty Name="UserCoupons" Relationship="Self.FK_UserCoupon_1" FromRole="User" ToRole="UserCoupon" />
+          <NavigationProperty Name="Businesses" Relationship="couponsModel.FK_Business_0" FromRole="User" ToRole="Business" />
+        </EntityType>
+        <EntityType Name="UserCoupon">
+          <Key>
+            <PropertyRef Name="SerialKey" />
+          </Key>
+          <Property Name="CouponID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="SerialKey" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Coupon" Relationship="Self.FK_UserCoupon_0" FromRole="UserCoupon" ToRole="Coupon" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserCoupon_1" FromRole="UserCoupon" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_1" FromRole="UserType" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Coupon_0">
+          <End Role="Business" Type="Self.Business" Multiplicity="0..1" />
+          <End Role="Coupon" Type="Self.Coupon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Business">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Coupon">
+              <PropertyRef Name="BusinessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coupon_1">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Coupon" Type="Self.Coupon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Coupon">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_0">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="FavoriteCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCoupon_0">
+          <End Role="Coupon" Type="Self.Coupon" Multiplicity="1" />
+          <End Role="UserCoupon" Type="Self.UserCoupon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coupon">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserCoupon">
+              <PropertyRef Name="CouponID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_2">
+          <End Role="RecommendationType" Type="Self.RecommendationType" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecommendationType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RecommendationType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_1">
+          <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCoupon_1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserCoupon" Type="Self.UserCoupon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserName" />
+            </Principal>
+            <Dependent Role="UserCoupon">
+              <PropertyRef Name="UserName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="couponsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Businesses" EntityType="Self.Business" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Coupons" EntityType="Self.Coupon" />
+          <EntitySet Name="RecommendationTypes" EntityType="Self.RecommendationType" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserCoupons" EntityType="Self.UserCoupon" />
+          <EntitySet Name="UserTypes" EntityType="Self.UserType" />
+          <AssociationSet Name="FK_Coupon_0" Association="Self.FK_Coupon_0">
+            <End Role="Business" EntitySet="Businesses" />
+            <End Role="Coupon" EntitySet="Coupons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coupon_1" Association="Self.FK_Coupon_1">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Coupon" EntitySet="Coupons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_0" Association="Self.FK_User_0">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCoupon_0" Association="Self.FK_UserCoupon_0">
+            <End Role="Coupon" EntitySet="Coupons" />
+            <End Role="UserCoupon" EntitySet="UserCoupons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_2" Association="Self.FK_User_2">
+            <End Role="RecommendationType" EntitySet="RecommendationTypes" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_1" Association="Self.FK_User_1">
+            <End Role="UserType" EntitySet="UserTypes" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCoupon_1" Association="Self.FK_UserCoupon_1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserCoupon" EntitySet="UserCoupons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Business_0" Association="couponsModel.FK_Business_0">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Business" EntitySet="Businesses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Business_1" Association="couponsModel.FK_Business_1">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Business" EntitySet="Businesses" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_Business_0">
+          <End Type="couponsModel.User" Role="User" Multiplicity="1" />
+          <End Type="couponsModel.Business" Role="Business" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserName" />
+            </Principal>
+            <Dependent Role="Business">
+              <PropertyRef Name="BusinessManager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Business_1">
+          <End Type="couponsModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="couponsModel.Business" Role="Business" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Business">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="couponsModelStoreContainer" CdmEntityContainer="couponsEntities">
+          <EntitySetMapping Name="Businesses">
+            <EntityTypeMapping TypeName="couponsModel.Business">
+              <MappingFragment StoreEntitySet="Business">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="BusinessManager" ColumnName="BusinessManager" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Long" ColumnName="Long" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="couponsModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coupons">
+            <EntityTypeMapping TypeName="couponsModel.Coupon">
+              <MappingFragment StoreEntitySet="Coupon">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="OriginalPrice" ColumnName="OriginalPrice" />
+                <ScalarProperty Name="DiscountPrice" ColumnName="DiscountPrice" />
+                <ScalarProperty Name="AVGRate" ColumnName="AVGRate" />
+                <ScalarProperty Name="LastUseDate" ColumnName="LastUseDate" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="BusinessID" ColumnName="BusinessID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecommendationTypes">
+            <EntityTypeMapping TypeName="couponsModel.RecommendationType">
+              <MappingFragment StoreEntitySet="RecommendationType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="couponsModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phonenumer" ColumnName="Phonenumer" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FavoriteCategoryID" ColumnName="FavoriteCategoryID" />
+                <ScalarProperty Name="CurrentLocation" ColumnName="CurrentLocation" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="RecommendationType" ColumnName="RecommendationType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserCoupons">
+            <EntityTypeMapping TypeName="couponsModel.UserCoupon">
+              <MappingFragment StoreEntitySet="UserCoupon">
+                <ScalarProperty Name="CouponID" ColumnName="CouponID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SerialKey" ColumnName="SerialKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="couponsModel.UserType">
+              <MappingFragment StoreEntitySet="UserType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
