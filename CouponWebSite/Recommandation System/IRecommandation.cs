@@ -19,9 +19,18 @@ namespace CouponWebSite.Recommandation_System
     public class ByLocation : IRecommandation
     {
         double longt, lat;
-        public ByLocation()
+        public ByLocation(double longt, double lat)
         {
-
+            if (longt == null || lat == null)
+            {
+                this.longt = 0;
+                this.lat = 0;
+            }
+            else
+            {
+                this.longt = longt;
+                this.lat = lat;
+            }
         }
 
         public  void setLocation(double longt, double lat)
@@ -119,9 +128,19 @@ namespace CouponWebSite.Recommandation_System
 
         string myPreference;
 
-        public ByCombination(string preference)
+        public ByCombination(string preference, double longt, double lat)
         {
             myPreference=preference;
+            if (longt == null || lat == null)
+            {
+                this.longt = 0;
+                this.lat = 0;
+            }
+            else
+            {
+                this.longt = longt;
+                this.lat = lat;
+            }
         }
 
         public void setLocation(double longt, double lat)

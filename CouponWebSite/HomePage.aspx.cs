@@ -89,14 +89,16 @@ namespace CouponWebSite
         {
             string longt = userLongitude.Text;
             string lat = userLatitude.Text;
+            Session["Lat"] = lat;
+            Session["Long"] = longt;
             string rec = CheckBoxList2.SelectedValue;
             switch(rec)
             {
                 case "Location":
                     {
-                        IRecommandation loc = new ByLocation();
-                        
-                        Session["RecommandationSystem"] = new ByLocation();
+                        //IRecommandation loc = new ByLocation(Convert.ToDouble(longt),Convert.ToDouble(lat));
+
+                        Session["RecommandationSystem"] = new ByLocation(Convert.ToDouble(longt), Convert.ToDouble(lat));
 
                         break;
                     }
@@ -108,7 +110,7 @@ namespace CouponWebSite
                     }
                 case "Combined":
                     {
-                        Session["RecommandationSystem"] = new ByCombination((string)Session["FavoriteCategory"]);
+                        Session["RecommandationSystem"] = new ByCombination((string)Session["FavoriteCategory"], Convert.ToDouble(longt), Convert.ToDouble(lat));
                         break;
                     }
             }
