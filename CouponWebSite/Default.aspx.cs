@@ -33,6 +33,8 @@ namespace CouponWebSite
                         Response.Redirect("~/AdminHomePage.aspx");
                     else if (uType.Equals("3")) //Business Manager
                         Response.Redirect("~/BusinessManagerHomePage.aspx");
+                    else 
+                        Response.Redirect("HomePage.aspx");
                 }      
 
             }
