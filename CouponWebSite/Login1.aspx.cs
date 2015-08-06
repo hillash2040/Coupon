@@ -19,11 +19,6 @@ namespace CouponWebSite
         {
             string user = UserName.Text;
             string pass = Password.Text;
-
-
-
-
-
             //Regular Way:
 
             couponsEntities ce = new couponsEntities();
@@ -42,7 +37,7 @@ namespace CouponWebSite
                             cookie.Expires = DateTime.Now.AddYears(3);
                             cookie.Values.Add("UserName", c.UserName);
                             cookie.Values.Add("LastEntered", DateTime.Now.ToString());
-                            cookie.Values.Add("UserType", DateTime.Now.ToString());
+                            cookie.Values.Add("UserType", c.UserType.ToString());
                         }
                         else
                         {
@@ -79,11 +74,7 @@ namespace CouponWebSite
             //UserName or password Incorrect
             lbl_wrongDetails.Text = "Username or password incorrect";
             lbl_wrongDetails.Visible = true;
-
-
-
         }
-
 
     }
 }

@@ -6,10 +6,8 @@
             <ol>
                 <li>
                     <asp:Label runat="server" >Category</asp:Label>
-                    <asp:DropDownList ID="DropDownList1" runat="server">
-                        <asp:ListItem>Food</asp:ListItem>
-                        <asp:ListItem>Family</asp:ListItem>
-                    </asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="Data Source=fituxeoqua.database.windows.net;Initial Catalog=coupons;Integrated Security=False;User ID=haimi;Password=shit123!;MultipleActiveResultSets=True;Connect Timeout=60;TrustServerCertificate=False;Application Name=EntityFramework" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [Name] FROM [Category]"></asp:SqlDataSource>
+                      <asp:DropDownList ID="category_dropDownList" runat="server" DataSourceID="SqlDataSource1" DataTextField="Name" DataValueField="ID"></asp:DropDownList>
                 </li>
                 <li>
                     <asp:Label ID="Label8" runat="server" AssociatedControlID="description">Description</asp:Label>
@@ -20,7 +18,7 @@
                      <asp:TextBox runat="server" ID="name_txt"  />
                 </li>
                 <asp:Label runat="server">Type:</asp:Label>
-                    <asp:DropDownList ID="DropDownList2" runat="server">
+                    <asp:DropDownList ID="couponType_dropDownList" runat="server">
                         <asp:ListItem>Social Network</asp:ListItem>
                         <asp:ListItem>Regular</asp:ListItem>
                     </asp:DropDownList>
@@ -36,7 +34,12 @@
                     <asp:Label ID="Label4" runat="server" AssociatedControlID="last_Use">Last Use Date</asp:Label>
                      <asp:TextBox runat="server" ID="last_Use" TextMode="DateTime"  />
                 </li>
-
+                <li>
+                     <asp:Label ID="Label5" runat="server" AssociatedControlID="business_dropDownList">Business</asp:Label>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=fituxeoqua.database.windows.net;Initial Catalog=coupons;Integrated Security=False;User ID=haimi;Password=shit123!;MultipleActiveResultSets=True;Connect Timeout=60;TrustServerCertificate=False;Application Name=EntityFramework" ProviderName="System.Data.SqlClient" SelectCommand="SELECT * FROM [Business]"></asp:SqlDataSource>
+                    <asp:DropDownList ID="business_dropDownList" runat="server" DataSourceID="SqlDataSource1" DataTextField="Name" DataValueField="ID"></asp:DropDownList>
+                </li>
+              
                 <li>
                     <asp:Button runat="server" ID="createCoupon" Text="Create Coupon" OnClick="createCoupon_Click" />
                 </li>

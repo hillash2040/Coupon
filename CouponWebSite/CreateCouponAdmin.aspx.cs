@@ -12,7 +12,28 @@ namespace CouponWebSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserType"].Equals("3"))
+            {
+                SqlDataSource1.SelectCommand +="Where BusinessManager="+Session["CurrentUserName"];
+            }
+            //put in drop down list the businesses
+            /*couponsEntities ce = new couponsEntities();
+            List<Business> lst = ce.Businesses.ToList();
+            if (Session["UserType"].Equals("3"))
+            {
 
+                foreach (Business b in lst)
+                {
+                    if (b.BusinessManager.Equals(Session["CurrentUserName"]))
+                    {
+                        //search for the business id
+                        busID = b.ID;
+                    }
+
+                }
+
+
+            }*/
         }
 
         protected void createCoupon_Click(object sender, EventArgs e)
@@ -20,7 +41,7 @@ namespace CouponWebSite
             //Create Coupon according to its type
             Coupon newCoupon;
             CouponFactory.CouponFactory cf = new CouponFactory.CouponFactory();
-            string type = DropDownList2.SelectedValue;
+            string type = couponType_dropDownList.SelectedValue;
             if (type.Equals("Social Network"))
                 newCoupon = cf.makeNewCoupon(type);
             else
@@ -38,18 +59,19 @@ namespace CouponWebSite
             //category
             string name = name_txt.Text;
             newCoupon.Name = name;
-            int busID = 0;
+            int busID = Int32.Parse(business_dropDownList.SelectedValue);
             DateTime lastUse = DateTime.Parse(last_Use.Text);
             couponsEntities ce = new couponsEntities();
+            List<Business> lst = ce.Businesses.ToList();
             if (Session["UserType"].Equals("3"))
             {
 
-                List<User> lst = ce.Users.ToList();
-                foreach (User c in lst)
+                foreach (Business b in lst)
                 {
-                    if (c.UserName.Equals(Session["CurrentUserName"]))
+                    if (b.BusinessManager.Equals(Session["CurrentUserName"]))
                     {
                         //search for the business id
+                        busID = b.ID;
                     }
 
                 }
