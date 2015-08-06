@@ -26,7 +26,6 @@ namespace CouponWebSite
             string userName = UserName.Text;
             string email = Email.Text;
             string password = Password.Text;
-            bool isAdmin = admin_checkBox.Checked;
 
             User c = new User();            
             c.UserName = userName;
@@ -48,10 +47,7 @@ namespace CouponWebSite
             }
             if (!found)
             {
-                if (isAdmin)
-                    c.UserType = 1;//admin
-                else
-                    c.UserType = 2;
+                c.UserType = 2;
                 ce.Users.Add(c);
                 ce.SaveChanges();
                 //Redirect to login Page

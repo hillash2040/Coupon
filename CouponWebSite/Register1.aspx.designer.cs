@@ -49,15 +49,6 @@ namespace CouponWebSite {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegExp1;
         
         /// <summary>
-        /// lbl_userExsits control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_userExsits;
-        
-        /// <summary>
         /// Label8 control.
         /// </summary>
         /// <remarks>
@@ -166,22 +157,13 @@ namespace CouponWebSite {
         protected global::System.Web.UI.WebControls.CompareValidator CompareValidator1;
         
         /// <summary>
-        /// Label13 control.
+        /// lbl_userExsits control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label13;
-        
-        /// <summary>
-        /// admin_checkBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox admin_checkBox;
+        protected global::System.Web.UI.WebControls.Label lbl_userExsits;
         
         /// <summary>
         /// Button1 control.

@@ -12,7 +12,7 @@ namespace CouponWebSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if ((int)Session["CurrentUserType"] == 3) //BusinessManager
+            if (Session["CurrentUserType"].Equals("3")) //BusinessManager
             {
                 string bm_Id = (string)Session["CurrentUserName"];
                 SqlDataSource1.SelectCommand += "Where BusinessManager=" + bm_Id;

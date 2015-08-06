@@ -10,9 +10,9 @@
                                 
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="UserName" CssClass="field-validation-error" ErrorMessage="The user name field is required." />
                                 <asp:RegularExpressionValidator ID="RegExp1" runat="server" ErrorMessage="UserName length must be between 3 to 8 characters and Contain only Alphabets" ControlToValidate="UserName" ValidationExpression="^[a-zA-Z]{3,8}$" CssClass="field-validation-error" />
-                                <asp:Label ID="lbl_userExsits" runat="server" Visible="false"></asp:Label>
+                               
                             </li>
-
+                            
                             <li>
                                 <asp:Label ID="Label8" runat="server" AssociatedControlID="Email">Email address</asp:Label>
                                 <asp:TextBox runat="server" ID="Email" TextMode="Email" />
@@ -35,12 +35,10 @@
                                 <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="Password" ControlToValidate="ConfirmPassword"
                                      CssClass="field-validation-error" Display="Dynamic" ErrorMessage="The password and confirmation password do not match." />
                             </li>
-                             <li>
-                                <asp:Label ID="Label13" runat="server">Admin</asp:Label>
-                                 <asp:CheckBox ID="admin_checkBox" runat="server" />                         
+
+                            <li>
+                                 <asp:Label ID="lbl_userExsits" runat="server" Visible="false"></asp:Label>
                             </li>
-
-
 
 
                         </ol>
