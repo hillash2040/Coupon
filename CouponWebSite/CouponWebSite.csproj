@@ -173,6 +173,7 @@
     <Content Include="CreateCouponAdmin.aspx" />
     <Content Include="CreateCouponUser.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="EditCoupon.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="HomePage.aspx" />
     <Content Include="Login1.aspx" />
@@ -414,6 +415,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditCoupon.aspx.cs">
+      <DependentUpon>EditCoupon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditCoupon.aspx.designer.cs">
+      <DependentUpon>EditCoupon.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

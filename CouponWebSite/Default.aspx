@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CouponWebSite.Default" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <h1> Welcome to our Coupon System!. Please Log in or Register if you don't have an account. Take a look at our new Coupons:</h1>
+        <h1> Welcome to our Coupon System!. Please Log in or Register if you don't have an account. Take a look at our cheapest Coupons:</h1>
      <div>
          
          <asp:GridView ID="NewCoupons" runat="server">
