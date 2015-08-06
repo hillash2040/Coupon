@@ -13,13 +13,17 @@ namespace CouponWebSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string uType = (string)Session["CurrentUserType"];
-            if (uType.Equals("3")) //BusinessManager
+            if (!IsPostBack)
             {
-                string bm_Id = (string)Session["CurrentUserName"];
-                //int i = 34;
-                //char c = (char)i;
-                string command = @"SELECT Coupon.ID, Coupon.Name, Coupon.Description, Coupon.LastUseDate, Coupon.DiscountPrice FROM Business INNER JOIN Coupon ON Business.ID = Coupon.BusinessID Where Business.BusinessManager="+"'"+bm_Id+"'";
+                string uType = (string)Session["CurrentUserType"];
+                if (uType.Equals("3")) //BusinessManager
+                {
+                    string bm_Id = (string)Session["CurrentUserName"];
+                    //int i = 34;
+                    //char c = (char)i;
+                    string command = @"SELECT Coupon.ID, Coupon.Name, Coupon.Description, Coupon.LastUseDate, Coupon.DiscountPrice FROM Business INNER JOIN Coupon ON Business.ID = Coupon.BusinessID Where Business.BusinessManager=" + "'" + bm_Id + "'";
+                    SqlDataSource1.SelectCommand = command;
+                }
             }
  
         }
