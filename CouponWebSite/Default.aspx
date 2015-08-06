@@ -3,12 +3,12 @@
         <h1> Welcome to our Coupon System!. Please Log in or Register if you don't have an account. Take a look at our new Coupons:</h1>
      <div>
          
-         <asp:GridView ID="NewBooks" runat="server">
+         <asp:GridView ID="NewCoupons" runat="server">
              <Columns>     
 
                  
                  <asp:BoundField HeaderText="Book" DataField="Name" />
-                 <asp:BoundField HeaderText="Price" DataField="Price" />                
+                 <asp:BoundField HeaderText="Price" DataField="DiscountPrice" />                
 
              </Columns>
          </asp:GridView>

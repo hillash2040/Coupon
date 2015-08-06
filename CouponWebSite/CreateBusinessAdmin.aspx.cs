@@ -10,7 +10,7 @@ namespace CouponWebSite
 {
     public partial class CreateBusinessAdmin : System.Web.UI.Page
     {
-        //Test 
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
