@@ -12,7 +12,7 @@ namespace CouponWebSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserType"].Equals("3"))
+            if (Session["CurrentUserType"].Equals("3"))
             {
                 SqlDataSource1.SelectCommand +="Where BusinessManager="+Session["CurrentUserName"];
                // business_dropDownList.Visible = false;
