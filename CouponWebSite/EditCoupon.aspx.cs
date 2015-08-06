@@ -17,7 +17,9 @@ namespace CouponWebSite
             if (uType.Equals("3")) //BusinessManager
             {
                 string bm_Id = (string)Session["CurrentUserName"];
-                string command = "SELECT Coupon.ID, Coupon.Name, Coupon.Description, Coupon.LastUseDate, Coupon.DiscountPrice FROM Business INNER JOIN Coupon ON Business.ID = Coupon.BusinessID Where Business.BusinessManager="+bm_Id;
+                int i = 34;
+                char c = (char)i;
+                string command = "SELECT Coupon.ID, Coupon.Name, Coupon.Description, Coupon.LastUseDate, Coupon.DiscountPrice FROM Business INNER JOIN Coupon ON Business.ID = Coupon.BusinessID Where Business.BusinessManager="+c+bm_Id+c;
                 SqlDataSource1.SelectCommand = command;
             }
  
