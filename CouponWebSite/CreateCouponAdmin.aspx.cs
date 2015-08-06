@@ -16,7 +16,7 @@ namespace CouponWebSite
                 return;
             if (Session["CurrentUserType"].Equals("3"))
             {
-                SqlDataSource1.SelectCommand +="Where BusinessManager="+"'"+Session["CurrentUserName"]+"'";
+                SqlDataSource1.SelectCommand +=" Where BusinessManager="+"'"+Session["CurrentUserName"]+"'";
                // business_dropDownList.Visible = false;
             }
         }
