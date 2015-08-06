@@ -12,6 +12,8 @@ namespace CouponWebSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (IsPostBack)
+                return;
             if (Session["CurrentUserType"].Equals("3"))
             {
                 SqlDataSource1.SelectCommand +="Where BusinessManager="+"'"+Session["CurrentUserName"]+"'";
