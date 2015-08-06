@@ -23,5 +23,10 @@ namespace CouponWebSite
         {
             Response.Redirect("CreateBusinessAdmin.aspx");
         }
+
+        protected void LinkButton2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EditCoupon.aspx");
+        }
     }
 }

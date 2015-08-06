@@ -25,10 +25,10 @@ namespace CouponWebSite
             b.Description = txt_description.Text;
             b.Long = Convert.ToDouble(txt_long.Text);
             b.Lat = Convert.ToDouble(txt_Lat.Text);
-
+            //business manager
             couponsEntities ce = new couponsEntities();
             ce.Businesses.Add(b);
-
+            ce.SaveChanges();
 
 
         }

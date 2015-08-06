@@ -62,7 +62,7 @@ namespace CouponWebSite
             int busID = Int32.Parse(business_dropDownList.SelectedValue);
             DateTime lastUse = DateTime.Parse(last_Use.Text);
             couponsEntities ce = new couponsEntities();
-            List<Business> lst = ce.Businesses.ToList();
+           /* List<Business> lst = ce.Businesses.ToList();
             if (Session["UserType"].Equals("3"))
             {
 
@@ -77,7 +77,7 @@ namespace CouponWebSite
                 }
 
                 
-            }
+            }*/
             newCoupon.BusinessID = busID;
             ce.Coupons.Add(newCoupon);
             ce.SaveChanges();

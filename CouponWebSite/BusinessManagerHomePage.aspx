@@ -4,6 +4,6 @@
     <h1> Welcome to the business mamnager's Page</h1>
 
     <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Create New Coupon</asp:LinkButton>
-    <asp:LinkButton ID="LinkButton2" runat="server">Edit Coupons</asp:LinkButton>
+    <asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton2_Click">Edit Coupons</asp:LinkButton>
     <asp:LinkButton ID="LinkButton3" runat="server" OnClick="LinkButton3_Click">Add Businesses</asp:LinkButton>
 </asp:Content>
